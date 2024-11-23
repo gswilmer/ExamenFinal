@@ -6,8 +6,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
@@ -57,27 +55,22 @@ public class JobsTest {
 		WebElement tituloPagina = driver.findElement(By.cssSelector("h1"));
 	    Assert.assertTrue(tituloPagina.getText().contains("Automation jobs"), "El titulo no contiene Automation Jobs");
 	    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-	    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		busquedaR.getAplicarTrabajo().click();
 		
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		Assert.assertTrue((jobDetails.getTituloJobs()).getText().contains("QA Automation"), "Oferta de trabajo no contiene QA Automation");
 				
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		//driver.findElement(By.xpath("//*[@id=\"ccmgt_explicit_accept\"]/div")).click();
 		
 		jobDetails.getBtnApply().click();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		
 		ValidarTituloEmailPage tituloEmail = new ValidarTituloEmailPage(driver);
-		//WebElement tituloPagina2 = driver.findElement(By.cssSelector("label"));			
-	    //Assert.assertTrue(tituloPagina2.getText().contains("Email address"), "El titulo no contiene Email address");
 		Assert.assertTrue((tituloEmail.getEmail()).getText().contains("Email address"), "Pagina no contiene texto Email address");
 	}
 	
-
 	
-	@AfterSuite (enabled = false)
+	@AfterSuite (enabled = true)
 	public void cerrarNavegador() {
 		driver.close();
 		driver.quit();
